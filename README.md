@@ -37,4 +37,4 @@ Message Center clients can send command to:
 - Message Center to receive status message or command menus, 
 - a thread of remote application via Message Center (for example to request to execute a specific action).
 
-Remote clients connects to Message Center via TCP socket. You can connect to message center using a TCP ocket client terminal as netcat (nc) or telnet, or your own TCP socket client application.
+Remote clients connects to Message Center via TCP socket. You can connect to message center using a TCP socket client terminal as netcat (nc) or telnet, or your own TCP socket client application.
