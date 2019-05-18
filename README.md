@@ -49,8 +49,8 @@ To allow the message center to monitoring your application, you must follow two 
 
 When the clients connect to message center server, they receive the  commands menu, and a command line prompt waiting for commands typing.
 
-To receive messages from remote application theread the message center clients can:
+To receive messages from remote application theread, the message center clients can:
  
-request list of senders id registered to message center
-request to receive message from specific sender id: the thread monitoring starts immediately and the client begins to receive messages
-press enter to stop thread and return to console 
+- request list of senders id registered to message center
+- request to receive message from specific sender id (if already known): the thread monitoring starts immediately and the client begins to receive messages real-time
+- to stop the-realtime thread monitoring the user can press enter to return to console 
