@@ -22,7 +22,7 @@ Message center consists of two parts:
 - The Message center to serialize and exchange message/commands between application thread (sender) and remote clients (commands clients)
 <img src="MessageCenter.png"/>
 <p align="center"><b>Fig. 1 - Integration of the message center within a really realized multi-thread audio streaming server</b></p>
-The Message Center is a message and command exchange center.The main task of the message center is to serialize the requests (Commands and messages) and route its:
+The Message Center is a message and command exchange center.The main task of the message center is to serialize the requests (Commands and messages) and route its<br>
 
 - Remote client sends comands to message center. 
 - Message center send it to destination thread. 
