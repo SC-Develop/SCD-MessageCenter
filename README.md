@@ -65,8 +65,8 @@ To receive messages from remote application theread, the message center clients 
 
 	``` 
 	$ cd message-center
-	$ ./make-release.sh	
-
+	$ ./make-release.sh
+	```
 ## Embedding Message Center into your own application source code
 
 You must include into your own project all package files:
@@ -94,21 +94,25 @@ int main(int argc, char *argv[])
    . . . 
    return a.exec();   // start application main event loop
 }
+```
 
 It is strictly recommended to use the self-allocated message center, becose it is already self-connected to message center server. 
 
 You can get it from message server by:
-
+```
 	SCDMsgCenter *mc = msgServer.messageCenter(); 
+```	
 You can use this message center in every part of your sigle/multi-threaded application. 
 You shuld passing it as a parameter to all classes or functions that will make use of it. 
 You have to pass it to all the threads will use it.
-
+```
 	MyThread *= new myThread(mc,...);
+```
+On thread main loop you should: 
 
-On  thread main loop you should: 
-Register thread sender: 
-Use PostMessage to send message to message center
+- Register thread sender: 
+- Use PostMessage method to send message to message center
+```
 void myThread::run() // qt thread main loop
 {
    Qstring  threadSenderName = “Thread[1]”;
@@ -127,3 +131,4 @@ void myThread::run() // qt thread main loop
  
    mc→postMessage(msg,threadSenderName);   // send message to message center 
 }
+```
