@@ -135,4 +135,5 @@ void myThread::run() // qt thread main loop
 }
 ```
 
-<b>Execution of remote clients command must be implemented by application developer</b>
+###Implementing execution of remote clients command</b>
+Execution of remote clients command must be implemented by application developer
