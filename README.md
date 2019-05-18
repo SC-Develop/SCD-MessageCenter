@@ -44,8 +44,8 @@ Remote clients connects to Message Center via TCP socket. You can connect to mes
 To use Message Center you must embed message center source code it into your own multitheread application QT project, and start Message Center TCP Server on a specific port. When the message center server is started, it can accept tcp socket connection from a remote client application as nectat (nc).<br>
 To allow the message center to monitoring your application, you must follow two step:
  
-- The application threads register some senders into message center to self identifying. Doing this, the message center clients can request list of senders id registered to message center, and therefore can request to recive message identified by centain sender id.
-- The application threads sends real-time messages identify by an registered sender id: the messages will real-time dispatched to clients which request to receiving messages from the same sender id, otherwise the message will be discarded by Message Center.
+- The application threads register some senders into message center to self identifying. Doing this, the message center clients can request list of senders id registered to message center, and therefore can request to receive message identified by centain sender id.
+- The application threads sends real-time messages identify by an registered sender id: the messages will real-time dispatched to clients which request to receiving messages from the same sender id, otherwise the messages will be discarded by Message Center.
 
 When the clients connect to message center server, they receive the  commands menu, and a command line prompt waiting for commands typing.
 
