@@ -13,4 +13,4 @@ Embedding the SCD Message Center into your own application you can do:
 - send custom commands to each thread of your application for performing custom actions, such as disconnecting a client, terminating a thread, changing the value of variables, etc.
 
 ## Why use the message center?
-The typical use of the message center is the realtime monitoring and remote control of a multi-threading application.<br>The message center can also be used for remote debugging in real time by controlling variable values, and modifying their value, for example.<br>A very interesting use could be, if the host application allows it, the execution of system commands or the execution of processes.
+The typical use of the message center is the realtime monitoring and remote control of a multi-threading application.<br>The message center can also be used for remote debugging in real time by controlling variable values, and modifying their value, for example. A very interesting use could be, if the host application allows it, the execution of system commands or the execution of processes.
