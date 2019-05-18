@@ -63,10 +63,10 @@ To receive messages from remote application theread, the message center clients 
 - Build project and run 
 - Alternatively you can make executable from cli (you must before install q5-default on your linux system):
 
-	``` 
-	$ cd message-center
-	$ ./make-release.sh
-	```
+``` 
+$ cd message-center
+$ ./make-release.sh
+```
 ## Embedding Message Center into your own application source code
 
 You must include into your own project all package files:
@@ -100,13 +100,13 @@ It is strictly recommended to use the self-allocated message center, becose it i
 
 You can get it from message server by:
 ```
-  SCDMsgCenter *mc = msgServer.messageCenter(); 
+SCDMsgCenter *mc = msgServer.messageCenter(); 
 ```	
 You can use this message center in every part of your sigle/multi-threaded application. 
 You shuld passing it as a parameter to all classes or functions that will make use of it. 
 You have to pass it to all the threads will use it.
 ```
-  MyThread *= new myThread(mc,...);
+MyThread *= new myThread(mc,...);
 ```
 On thread main loop you should: 
 
