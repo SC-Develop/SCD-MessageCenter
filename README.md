@@ -66,3 +66,4 @@ To receive messages from remote application theread, the message center clients 
 	``` 
 	$ cd message-center
 	$ ./make-release.sh
+	
