@@ -155,6 +155,11 @@ void SignalsHandler::onClientCommand(QString cmd, QString sender)
    }
 }
 ```
+and connect the signal to slot, in the constructor for example
+```
+connect(mc,SIGNAL(commandToSender_signal(QString,QString)),this,SLOT(onClientCommand(QString,QString)));
+```
+
 <b>N.B.</b>
 Only the specified destination thread (sender param) must be process the message.
 
