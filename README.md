@@ -66,3 +66,64 @@ To receive messages from remote application theread, the message center clients 
 	``` 
 	$ cd message-center
 	$ ./make-release.sh	
+
+## Embedding Message Center into your own application source code
+
+You must include into your own project all package files:
+
+- msgcenter.h
+- msgcenter.cpp
+- msgserver.cpp,
+- msgserver.h,
+- msgserverthread.h,
+- msgserverthread.cpp,
+- msgthreadhandler.h
+- msgthreadhandler.cpp
+
+In your main() function/class declare message center server and start it (message center is sef allocated):
+```
+int main(int argc, char *argv[])
+{
+   QCoreApplication a(argc, argv);
+   . . .
+   int mcport = 123456; 
+   SCDMsgServer msgServer(mcport,true);  // declare message center server
+   msgServer.start(); // start message center server: message center is self allocated by messge server   
+   SCDMsgCenter *mc = msgServer.messageCenter(); // get self allocated message center pointer
+   myMainClass(mc);    // pass message center pointer to application main class
+   . . . 
+   return a.exec();   // start application main event loop
+}
+
+It is strictly recommended to use the self-allocated message center, becose it is already self-connected to message center server. 
+
+You can get it from message server by:
+
+	SCDMsgCenter *mc = msgServer.messageCenter(); 
+You can use this message center in every part of your sigle/multi-threaded application. 
+You shuld passing it as a parameter to all classes or functions that will make use of it. 
+You have to pass it to all the threads will use it.
+
+	MyThread *= new myThread(mc,...);
+
+On  thread main loop you should: 
+Register thread sender: 
+Use PostMessage to send message to message center
+void myThread::run() // qt thread main loop
+{
+   Qstring  threadSenderName = “Thread[1]”;
+
+   mc->addSender(threadSenderName);        // register a new sender to message center
+
+   QString msg = “Welcome to thread loop”;  
+
+   mc→postMessage(msg,threadSenderName);   // send message to message center
+
+   . . .
+
+   exec(); // exec qt thread event loop
+
+   QString msg = “Thread loop has finished...”;  
+ 
+   mc→postMessage(msg,threadSenderName);   // send message to message center 
+}
