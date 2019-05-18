@@ -135,5 +135,28 @@ void myThread::run() // qt thread main loop
 }
 ```
 
-###Implementing execution of remote clients command</b>
-Execution of remote clients command must be implemented by application developer
+<b>Implementing execution of remote clients command</b>
+Execution of remote clients command must be implemented by application developer<br>
+When Message Center client send a command to specific thread, Message Center emit a signal
+
+```
+emit commandToSender_signal(command,sender_id);
+```
+
+This signal must be processed by application threads event loop.<br>
+In your class that processes thread signals/event (must be live into thread space) create the slot as in demo example
+```
+void SignalsHandler::onClientCommand(QString cmd, QString sender)
+{
+   if (sender==socket->objectName())
+   {
+       mc->postMessage("Comando ricevuto",socket->objectName());
+   }
+}
+```
+<b>N.B.</b>
+Only the specified destination thread (sender param) must be process the message.
+
+
+
+
