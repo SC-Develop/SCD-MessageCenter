@@ -151,7 +151,7 @@ void SignalsHandler::onClientCommand(QString cmd, QString sender)
 {
    if (sender==socket->objectName())
    {
-       mc->postMessage("Comand received: cmd",socket->objectName());
+       mc->postMessage("Comand received: " + cmd,socket->objectName());
    }
 }
 ```
