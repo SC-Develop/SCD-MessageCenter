@@ -55,6 +55,8 @@ To receive messages from remote application theread, the message center clients 
 - request to receive message from specific sender id (if already known): the thread monitoring starts immediately and the client begins to receive messages real-time
 - to stop the-realtime thread monitoring the user can press enter to return to console 
 
+## How it works: practical example
+
 ## How to install and compile: demo example with complete project source code
 
 - Download or clone project
