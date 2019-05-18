@@ -1,6 +1,6 @@
-# SCD_MC (QT C++ Class)
+### SCD Message Center (QT C++ Class)
 
-## SCD Message Center
+## Description
 This is an Qt interprocess communication class .
 The purpose of the Message Center is to allow the exchange of messages between your own multithreading application and one or more remote control-monitoring terminals via TCP socket. 
 This Qt class can be used also for generic interprocess communication through message exchanging.
