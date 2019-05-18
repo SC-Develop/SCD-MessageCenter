@@ -63,5 +63,6 @@ To receive messages from remote application theread, the message center clients 
 - Build project and run 
 - Alternatively you can make executable from cli (you must before install q5-default on your linux system):
 
-	``` $ cd message-center
+	``` 
+	$ cd message-center
 	$ ./make-release.sh
