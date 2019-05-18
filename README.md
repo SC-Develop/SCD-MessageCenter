@@ -161,7 +161,7 @@ connect(mc,SIGNAL(commandToSender_signal(QString,QString)),this,SLOT(onClientCom
 ```
 
 <b>N.B.</b>
-Only the specified destination thread (sender param) must be process the message.
+Only the specified destination thread (sender param) shuld process the message.
 
 
 
