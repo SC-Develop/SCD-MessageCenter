@@ -144,13 +144,14 @@ emit commandToSender_signal(command,sender_id);
 ```
 
 This signal must be processed by application threads event loop.<br>
+
 In your class that processes thread signals/event (must be live into thread space) create the slot as in demo example
 ```
 void SignalsHandler::onClientCommand(QString cmd, QString sender)
 {
    if (sender==socket->objectName())
    {
-       mc->postMessage("Comando ricevuto",socket->objectName());
+       mc->postMessage("Comand received: cmd",socket->objectName());
    }
 }
 ```
