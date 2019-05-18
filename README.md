@@ -20,5 +20,5 @@ Message center consists of two parts:
 
 - The Multithreading Socket Server to accept remote client connections
 - The Message center to serialize and exchange message/commands between application thread (sender) and remote clients (commands clients)
-<img src="MessageCenter.png"/><br>
-### <p style="text-align:center;">Example of integration of the message center into an application actually created by me</p>
+<img src="MessageCenter.png"/>
+<p style="text-align:center;"><b>Example of integration of the message center into an application actually created by me</b></p>
