@@ -134,3 +134,5 @@ void myThread::run() // qt thread main loop
    mc→postMessage(msg,threadSenderName);   // send message to message center 
 }
 ```
+
+<b>Execution of remote clients command must be implemented by application developer</b>
