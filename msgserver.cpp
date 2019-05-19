@@ -53,17 +53,15 @@ SCDMsgServer::SCDMsgServer(int port, bool verbose, QString logFile, SCDMsgCenter
  */
 bool SCDMsgServer::start()
 {
-   QString msg;
-
    Status = listen(QHostAddress::Any,Port);
 
    if (Status)    // listen for incoming connections
    {
-      QTextStream(&msg) << "\nMessage Center Server is listening on port: " << Port << "" << " for incoming connections..." << endl;
+      QTextStream(stdout) << "\nMessage Center Server is listening on port: " << Port << "" << " for incoming connections..." << endl;
    }
    else
    {
-     QTextStream(&msg) << "Could not start the Message Center Server on port: " << Port  << " => " << this->errorString();
+      QTextStream(stdout) << "Could not start the Message Center Server on port: " << Port  << " => " << this->errorString();
    }
 
    return Status;
