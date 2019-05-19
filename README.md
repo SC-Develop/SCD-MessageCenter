@@ -179,8 +179,9 @@ Only the specified destination thread (sender param) should process the message.
 <img src="images/3.png"/>
 <p>Digit the command 'list' to abtain the list registerd sender<p> 
 <img src="images/4.png"/>
-<p>Digit the command 'spy sock.6' the terminal enter in mode 'realtime monitoring' all messages set from application cleint to Application Server will be shown on remote monitoring client<p>
+<p>Type the command 'spy sock.6' the terminal enter in mode 'realtime monitoring' all messages sent from application client to Application Server will be shown on remote monitoring client<p>
 <img src="images/5.png"/>
+<p>Type 'Hello' in application client terminal, in the remote monitoring terminal will be shown the message 'sock.6:hello' (sender id: message)</p>
 <img src="images/6.png"/>
 <img src="images/7.png"/>
 
