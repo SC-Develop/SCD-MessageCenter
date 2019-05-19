@@ -75,7 +75,7 @@ $ cd <SC_MC source dir>
 $ ./make-release.sh  
 ```
 or
-``
+```
 $ ./make-debug.sh
 ```
 ## Embedding Message Center into your own application source code
