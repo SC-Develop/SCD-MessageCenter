@@ -61,14 +61,18 @@ To receive messages from remote application theread, the message center clients 
 
 ## How to install and compile: demo example with complete project source code
 
-- Download or clone project
-- Unzip project folder on your develop folder
+- Download or clone project.<br>
+To clone project, at prompt type:
+```
+$ git clone https://github.com/sc-develop/SCD_MC.git
+```
+- If you have downloaded the repository, unzip project folder on your develop folder
 - Run qt creator (5.9.2 or later) and load project file ‘message-center-demo.pro’ located into folder ‘source’
 - Build project and run 
 - Alternatively you can make executable from cli (you must before install q5-default on your linux system):
 
 ``` 
-$ cd message-center
+$ cd <SC_MC source dir>
 $ ./make-release.sh
 ```
 ## Embedding Message Center into your own application source code
