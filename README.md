@@ -25,13 +25,13 @@ It consists of two parts:
 <p align="center"><b>Fig. 1 - Integration of the message center into a really realized multi-thread audio streaming server</b></p>
 The main task of the Message Center is to serialize the requests (Commands and messages) and route its to destination threads as below explained (see fig. 1):</p>
 
-- Remote client sends a comand to Message Center (TCP CLient 3, at left in figure). 
-- Message Center route it to application destination thread (Thread id=3, at right in figure). 
-- Destination thread (Thread id = 3) sends a reply message to Message Center which route it to remote client (TCP CLient 3) which have emitted the command.
-- Application threads send messages (as a log message) to Message Center (Thread id=1,2 at right in figure)
-- Remote clients (TCP Client 1,2) request to Message Center to receive messages from a specific theread (Thread id=1)
-- Message Center routes messages from application thread (Thread id=1) to remote clients which have requested to receive it (TCP Client 1,2)
-- Message Center discards messages from application thread (Thread id=2) which are not be request from any remote client
+- The remote client sends a comand to Message Center (TCP CLient 3, at left in figure). 
+- The message Center routes it to application destination thread (Thread id=3, at right in figure). 
+- The destination thread (Thread id = 3) sends a reply message to Message Center which route it to remote client (TCP CLient 3) which have emitted the command.
+- The application threads send messages (as a log message) to Message Center (Thread id=1,2 at right in figure)
+- The remote clients (TCP Client 1,2) request to Message Center to receive messages from a specific theread (Thread id=1)
+- The Message Center routes messages from application thread (Thread id=1) to remote clients which have requested to receive it (TCP Client 1,2)
+- The Message Center discards the messages of application threads (Thread id=2) which are not be request from any remote client
 
 Message Center clients can send command to:
 
