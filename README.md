@@ -34,12 +34,12 @@ The main task of the Message Center is to serialize the requests (Commands and m
 - The Message Center discards the messages of application threads (Thread id=2) which are not be request from any remote client
 - The TCP Client 4 in figure 1 instead, simply send a command to Message Center (as a request of console menu) and Message Center send to it the reply
 
-Message Center clients can send command to:
+The Message Center clients can send command to:
 
-- Message Center to receive status message or command menus, 
+- the Message Center to receive status message or command menus, 
 - a thread of remote application via Message Center (for example to request to execute a specific action).
 
-Remote clients connects to Message Center via TCP socket. You can connect to message center using a TCP socket client terminal as netcat (nc) or telnet, or your own TCP socket client application.
+The Remote clients connects to Message Center via TCP socket. You can connect to message center using a TCP socket client terminal as netcat (nc) or telnet, or your own TCP socket client application.
 
 ## How To it Work
 
