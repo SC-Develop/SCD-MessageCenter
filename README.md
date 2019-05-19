@@ -25,12 +25,12 @@ It consists of two parts:
 <p align="center"><b>Fig. 1 - Integration of the message center into a really realized multi-thread audio streaming server</b></p>
 The main task of the Message Center is to serialize the requests (Commands and messages) and route its</p>
 
-- Remote client sends comands to Message Center. 
-- Message Center send it to destination thread. 
-- Destination thread send a reply message to Message Center which route it to client which have requested.
-- Application thread sends messages (as log message) to Message Center
-- Remote client ask to Message Center to receive messages from specific theread
-- Message Center routes messages from thread to remote client which have request for it
+- Remote client sends a comand to Message Center (at left in figure). 
+- Message Center route it to application destination thread (at right in figure). 
+- Destination thread sends a reply message to Message Center which route it to remote client which have requested.
+- Application threads send messages (as a log message) to Message Center
+- Remote clients ask to Message Center to receive messages from a specific theread
+- Message Center routes messages from application thread to remote clients which have requested to receive it
 
 Message Center clients can send command to:
 
