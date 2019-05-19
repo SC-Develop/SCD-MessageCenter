@@ -27,7 +27,7 @@ The main task of the Message Center is to serialize the requests (Commands and m
 
 - Remote client sends a comand to Message Center (at left in figure). 
 - Message Center route it to application destination thread (at right in figure). 
-- Destination thread sends a reply message to Message Center which route it to remote client which have requested.
+- Destination thread sends a reply message to Message Center which route it to remote client which have emitted the command.
 - Application threads send messages (as a log message) to Message Center
 - Remote clients ask to Message Center to receive messages from a specific theread
 - Message Center routes messages from application thread to remote clients which have requested to receive it
