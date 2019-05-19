@@ -23,7 +23,6 @@
 
 #include "msgserver.h"
 #include "msgserverthread.h"
-#include "log.h"
 
 /**
  * @brief SCDMsgServer::SCDMsgServer
