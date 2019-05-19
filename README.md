@@ -61,8 +61,7 @@ To receive messages from remote application theread, the message center clients 
 
 ## How to install and compile: demo example with complete project source code
 
-- Download or clone project.<br>
-To clone project, at prompt type:
+- Download or clone project. To clone project, at prompt type:
 ```
 $ git clone https://github.com/sc-develop/SCD_MC.git
 ```
@@ -73,7 +72,11 @@ $ git clone https://github.com/sc-develop/SCD_MC.git
 
 ``` 
 $ cd <SC_MC source dir>
-$ ./make-release.sh
+$ ./make-release.sh  
+```
+or
+``
+$ ./make-debug.sh
 ```
 ## Embedding Message Center into your own application source code
 
