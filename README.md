@@ -171,9 +171,9 @@ connect(mc,SIGNAL(commandToSender_signal(QString,QString)),this,SLOT(onClientCom
 Only the specified destination thread (sender param) should process the message.
 
 ## Testing the Application
-Run the Message Center Demo Application, and open three terminals.<br><br>
+<p>Run the Message Center Demo Application, and open three terminals.</p><br>
 <img src="images/1.png"/>
-<br>Run application tcp client on port 12345<br><br>
+<p>Run application tcp client on port 12345</p><br>
 <img src="images/2.png"/>
 <br>Run Message Center tcp client on port 12346: the Message Center send it the command menu and it wait for typing<br><br>
 <img src="images/3.png"/>
