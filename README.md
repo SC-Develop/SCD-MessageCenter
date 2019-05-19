@@ -29,8 +29,8 @@ The main task of the Message Center is to serialize the requests (Commands and m
 - Message Center route it to application destination thread (Thread id = 3, at right in figure). 
 - Destination thread (Thread id = 3) sends a reply message to Message Center which route it to remote client (TCP CLient 3) which have emitted the command.
 - Application threads send messages (as a log message) to Message Center (Thread id =1,2 at right in figure)
-- Remote clients ask to Message Center to receive messages from a specific theread
-- Message Center routes messages from application thread to remote clients which have requested to receive it
+- Remote clients (TCP Client 1,2) request to Message Center to receive messages from a specific theread (Thread id = 1)
+- Message Center routes messages from application thread (Thread id = 1) to remote clients which have requested to receive it (TCP Client 1,2)
 
 Message Center clients can send command to:
 
