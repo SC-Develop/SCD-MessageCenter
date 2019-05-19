@@ -16,7 +16,7 @@ Embedding the SCD Message Center into your own application you can do:
 The typical use of the message center is the realtime monitoring and remote control of a multi-threading application.<br>The message center can also be used for remote debugging in real time by controlling variable values, and modifying their value, for example. A very interesting use could be, if the host application allows it, the execution of system commands or the execution of processes.
 ## Message Center Architecture
 
-The Message Center is a message and command exchange center.<br>
+The Message Center is a message and command exchange center.<br><br>
 It consists of two parts:
 
 - The Multithreading Socket Server to accept remote client connections
