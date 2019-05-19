@@ -183,5 +183,6 @@ Only the specified destination thread (sender param) should process the message.
 <img src="images/5.png"/>
 <p>Type 'Hello' in application client terminal, in the remote monitoring terminal will be shown the message 'sock.6:hello' (sender id: message)</p>
 <img src="images/6.png"/>
+<p>Run a new Message Center tcp client on port 12346, and send a command to sender thread sock.6 typing '@sock.6 myCommand': the monitoring client echoes the command received from application thread sock.6.</p>
 <img src="images/7.png"/>
 
