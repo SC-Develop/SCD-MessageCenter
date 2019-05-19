@@ -175,7 +175,7 @@ Run the Message Center Demo Application, and open three terminals.<br>
 <img src="images/1.png"/>
 Run application tcp client on port 12345<br>
 <img src="images/2.png"/>
-Run Message Center tcp client on port 12346<br>
+Run Message Center tcp client on port 12346: the Message Center send it the command menu and it wait for typing<br>
 <img src="images/3.png"/>
 Digit the command 'list' to abtain the list registerd sender<br> 
 <img src="images/4.png"/>
