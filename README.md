@@ -137,9 +137,9 @@ void myThread::run() // qt thread main loop
 }
 ```
 
-<b>Implementing execution of remote clients command</b><br>
+<b>Implementing execution of remote clients command</b><br><br>
 Execution of remote clients command must be implemented by application developer<br>
-When Message Center client send a command to specific thread, Message Center emit a signal
+When Message Center client sends a command to specific thread, Message Center emit a signal
 
 ```
 emit commandToSender_signal(command,sender_id);
@@ -163,7 +163,7 @@ connect(mc,SIGNAL(commandToSender_signal(QString,QString)),this,SLOT(onClientCom
 ```
 
 <b>N.B.</b>
-Only the specified destination thread (sender param) shuld process the message.
+Only the specified destination thread (sender param) should process the message.
 
 
 
