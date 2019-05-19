@@ -137,7 +137,7 @@ void myThread::run() // qt thread main loop
 }
 ```
 
-<b>Implementing execution of remote clients command</b>
+<b>Implementing execution of remote clients command</b><br>
 Execution of remote clients command must be implemented by application developer<br>
 When Message Center client send a command to specific thread, Message Center emit a signal
 
