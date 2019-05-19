@@ -13,7 +13,7 @@ By embedding the SCD Message Center into your own application you will be able t
 - Sends custom commands to each thread of your application for performing custom actions, such as disconnecting a client, terminating a thread, changing the value of variables, etc.
 
 ## When is it useful to use the message center?
-The typical use of the message center is the realtime monitoring and remote control of a multi-threading application.<br>The message center can also be used for remote debugging in real time by controlling variable values, and modifying their value, for example. A very interesting use could be, if the host application allows it, the execution of system commands or the execution of processes.
+The typical use of the message center is the realtime remote monitoring and control of a multi-threading application.<br>The message center can also be used for remote debugging in real time by controlling variable values, and modifying their value, for example. A very interesting use could be, if the host application allows it, the execution of system commands or the execution of processes.
 ## Message Center Architecture
 
 The Message Center is a message and command exchange center.<br><br>
@@ -23,7 +23,7 @@ It consists of two parts:
 - The Message center to serialize and exchange message/commands between application thread (sender) and remote clients (commands clients)
 <img src="MessageCenter.png"/>
 <p align="center"><b>Fig. 1 - Integration of the message center into a really realized multi-thread audio streaming server</b></p>
-The main task of the Message Center is to serialize the requests (Commands and messages) and route its</p>
+The main task of the Message Center is to serialize the requests (Commands and messages) and route its to destination threads as below explained (see fig. 1):</p>
 
 - Remote client sends a comand to Message Center (at left in figure). 
 - Message Center route it to application destination thread (at right in figure). 
