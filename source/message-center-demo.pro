@@ -16,7 +16,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 INCLUDEPATH = ../
-INCLUDEPATH += ../../log/
 
 SOURCES += main.cpp \
     ../msgcenter.cpp \
@@ -24,8 +23,7 @@ SOURCES += main.cpp \
     ../msgserverthread.cpp \
     ../msgthreadhandler.cpp \
     demoserver.cpp \
-    demoserverthread.cpp \
-    ../../log/log.cpp
+    demoserverthread.cpp
 
 DESTDIR = ../bin
 
@@ -35,5 +33,4 @@ HEADERS += \
     ../msgserverthread.h \
     ../msgthreadhandler.h \
     demoserver.h \
-    demoserverthread.h \
-    ../../log/log.h
+    demoserverthread.h
