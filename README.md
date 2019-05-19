@@ -171,5 +171,7 @@ connect(mc,SIGNAL(commandToSender_signal(QString,QString)),this,SLOT(onClientCom
 Only the specified destination thread (sender param) should process the message.
 
 ## Testing the Application
+Run the Message Center Demo Application, and open three terminals.
+<img src="images/1.png"/>
 
 
