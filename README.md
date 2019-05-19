@@ -171,15 +171,15 @@ connect(mc,SIGNAL(commandToSender_signal(QString,QString)),this,SLOT(onClientCom
 Only the specified destination thread (sender param) should process the message.
 
 ## Testing the Application
-<p>Run the Message Center Demo Application, and open three terminals.</p><br>
+<p>Run the Message Center Demo Application, and open three terminals.</p>
 <img src="images/1.png"/>
-<p>Run application tcp client on port 12345</p><br>
+<p>Run application tcp client on port 12345</p>
 <img src="images/2.png"/>
-<br>Run Message Center tcp client on port 12346: the Message Center send it the command menu and it wait for typing<br><br>
+<p>Run Message Center tcp client on port 12346: the Message Center send it the command menu and it wait for typing</p>
 <img src="images/3.png"/>
-<br>Digit the command 'list' to abtain the list registerd sender<br><br> 
+<p>Digit the command 'list' to abtain the list registerd sender<p> 
 <img src="images/4.png"/>
-<br>Digit the command 'spy sock.6' the terminal enter in mode 'realtime monitoring' all messages set from application cleint to Application Server will be shown on remote monitoring client<br><br>
+<p>Digit the command 'spy sock.6' the terminal enter in mode 'realtime monitoring' all messages set from application cleint to Application Server will be shown on remote monitoring client<p>
 <img src="images/5.png"/>
 <img src="images/6.png"/>
 <img src="images/7.png"/>
