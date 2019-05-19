@@ -9,8 +9,8 @@ This class can be easily integrated into your application, it works very well an
 By embedding the SCD Message Center into your own application you will be able to:
 
 - Realtime monitoring  of your own application by receiving messages from each thread of your application via tcp Socket, such as log messages, variable values, event messaging etc.
-- Send commands to the message center to get status information or request the execution of actions to your application threads
-- send custom commands to each thread of your application for performing custom actions, such as disconnecting a client, terminating a thread, changing the value of variables, etc.
+- Sends commands to the message center to get status information or request the execution of actions to your application threads
+- Sends custom commands to each thread of your application for performing custom actions, such as disconnecting a client, terminating a thread, changing the value of variables, etc.
 
 ## When is it useful to use the message center?
 The typical use of the message center is the realtime monitoring and remote control of a multi-threading application.<br>The message center can also be used for remote debugging in real time by controlling variable values, and modifying their value, for example. A very interesting use could be, if the host application allows it, the execution of system commands or the execution of processes.
