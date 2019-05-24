@@ -1,5 +1,5 @@
 /**
- * @class  SCDMsgServerThread - https://github.com/sc-develop/SCD_MC
+ * @class  SCDMsgServerThread - https://github.com/sc-develop/SCD-MC
  *
  * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/sc-develop/
  *
