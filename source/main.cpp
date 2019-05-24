@@ -2,13 +2,11 @@
 
   @author Ing. Salvatore Cerami dev.salvatore.cerami@gmail.com
 
-  @brief SCD Message Center Demo - https://github.com/sc-develop/SCD_MC
+  @brief SCD Message Center Demo - https://github.com/sc-develop/SCD-MC
 
          This program demonstrate how to use the SCD Message Center, a Qt C++ inter process communication class library .
 
 */
-
-
 
 #include <QCoreApplication>
 #include <QSettings>
