@@ -61,7 +61,7 @@ bool SCDMsgServer::start()
    }
    else
    {
-      QTextStream(stdout) << "Could not start the Message Center Server on port: " << Port  << " => " << this->errorString();
+      QTextStream(stdout) << "Unable to start Message Center Server on port: " << Port  << " => " << this->errorString();
    }
 
    return Status;
