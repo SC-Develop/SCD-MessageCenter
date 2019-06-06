@@ -27,11 +27,11 @@ void DemoServer::start()
 {
    if (!this->listen(QHostAddress::Any,port))
    {
-      qDebug() << "Could not start a server on port:  " << port <<  this->errorString();
+      qDebug() << "Unable to start the server on port:" << port <<  this->errorString();
    }
    else
    {
-      qDebug() << "Server Listening on port: " << port << " for incoming connections..." ;
+      qDebug() << "Server Listening on port:" << port << " for incoming connections..." ;
 
       // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
