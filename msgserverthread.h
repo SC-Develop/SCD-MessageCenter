@@ -12,13 +12,11 @@ class SCDMsgServerThread : public QThread
 
   public:
 
-    explicit SCDMsgServerThread(int socketDescriptor, SCDMsgServer *msgServer);
+    explicit SCDMsgServerThread(int socketDescriptor, SCDMsgCenter *mc = 0, QObject *parent = 0);
 
     ~SCDMsgServerThread();
 
     void run(); // thread execution
-
-    SCDMsgServer *msgServer() {return srv;}
 
   signals:
 
@@ -29,11 +27,11 @@ class SCDMsgServerThread : public QThread
 
   private:
 
-    QTcpSocket *Socket;   // socket of current connection
-
     int SocketDescriptor; // descriptor(handle) of current socket
 
-    SCDMsgServer *srv;
+    SCDMsgCenter *mc;
+
+    QTcpSocket *Socket;   // socket of current connection
 };
 
 #endif // SCDSERVERTHREAD_H

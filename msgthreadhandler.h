@@ -12,7 +12,7 @@ class SCDMsgThreadHandler: public QObject
 
   public:
 
-    explicit SCDMsgThreadHandler(int socketDescriptor,  SCDMsgServerThread *msgServerThread);
+    explicit SCDMsgThreadHandler(int socketDescriptor,  SCDMsgCenter *mc);
 
     ~SCDMsgThreadHandler();
 
@@ -30,9 +30,7 @@ class SCDMsgThreadHandler: public QObject
 
   private:
 
-    int SocketDescriptor;     // descriptor(handle) of current socket
-
-    SCDMsgServerThread *thread;
+    int SocketDescriptor; // descriptor(handle) of current socket
 
     SCDMsgCenter *mc;
 

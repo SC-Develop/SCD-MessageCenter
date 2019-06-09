@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTcpSocket>
+#include <QMutex>
 
 class SCDMsgCenter : public QObject
 {
@@ -23,6 +24,8 @@ class SCDMsgCenter : public QObject
 
     const char CR = 0x0D;
     const char LF = 0x0A;
+
+    QMutex mutex;
 
     QVector<Client> clients; // list of client socket
 
@@ -58,58 +61,30 @@ class SCDMsgCenter : public QObject
 
   signals:
 
-    // internal connected signal ---------------------------------------------------------------------
-
-    void registerClient_signal(int socketDescriptor);
-    void removeClient_signal(int socketDescriptor);
-
-    void registerSender_signal(QString sender);
-    void removeSender_signal(QString sender);
-
     /**
-      * @brief command  this signal must be emit to send the command 'command' to message center.
-      *                 Message center process it automatically, and forward message destinate to sender,
-      *                 emmitting, appropriated singnal (commandToSender_signal)
-      * @param command  command string
-      * @param toSender sender to send command to
-      */
-    void command_signal(QString command, int socketDescriptor);
-
-    /**
-     * @brief message_signal sender send a message to message center.
-     *                       messages are intended for all clients,
-     *                       but only those clients who request them will receive it
-     * @param msg
-     * @param sender
-     */
-    void message_signal(QString msg, QString sender);
-
-    // external connected signal ----------------------------------------------------------------
-
-    /**
-     * @brief commandToSender_signal send a command to sender: shuld be processed by sender thread
+     * @brief commandToSender_signal send a command to sender: shuld be only processed by sender thread
      * @param command
      * @param toSender Sender wich should be receive command
      */
     void commandToSender_signal(QString command, QString toSender);
 
     /**
-     * @brief messageToClient_signal send a message to client: shuld be processed by client thread
+     * @brief messageToClient_signal send a message to client: shuld be only processed by client thread
      * @param msg
      * @param socketDescriptor destionation client socket descriptor
      */
     void messageToClient_signal(QString msg, int socketDescriptor);
 
-  private slots:
+  protected:
 
-    void registerClient_slot(int socketDescriptor);
-    void removeClient_slot(int socketDescriptor);
+    void registerClient(int socketDescriptor);
+    void unregisterClient(int socketDescriptor);
 
-    void registerSender_slot(QString sender);
-    void removeSender_slot(QString sender);
+    void registerMessageSender(QString sender);
+    void unregisterMessageSender(QString sender);
 
-    void command_slot(QString cmd, int clientSocketDescriptor);
-    void message_slot(QString msg, QString sender);    
+    void processCommand(QString cmd, int clientSocketDescriptor);
+    void processMessage(QString msg, QString sender);
 };
 
 #endif // SCDMSGCENTER_H

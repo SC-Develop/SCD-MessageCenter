@@ -1,7 +1,7 @@
 /**
- * @class SCDMsgCenter - https://github.com/sc-develop/SCD-MC
+ * @class SCDMsgCenter - https://github.com/SC-Develop/SCD_MC
  *
- * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/sc-develop/
+ * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/SC-Develop/
  *
  * @brief Message center: Interprocess message comunications
  *
@@ -39,18 +39,14 @@
 
 #include "msgcenter.h"
 
+
 /**
  * @brief SCDMsgCenter::SCDMsgCenter
  * @param parent
  */
 SCDMsgCenter::SCDMsgCenter(QObject *parent) : QObject(parent)
 {
-   connect(this, SIGNAL(registerClient_signal(int)),      this, SLOT(registerClient_slot(int)));
-   connect(this, SIGNAL(removeClient_signal(int)),        this, SLOT(removeClient_slot(int)));
-   connect(this, SIGNAL(registerSender_signal(QString)),  this, SLOT(registerSender_slot(QString)));
-   connect(this, SIGNAL(removeSender_signal(QString)),    this, SLOT(removeSender_slot(QString)));
-   connect(this, SIGNAL(command_signal(QString,int)),     this, SLOT(command_slot(QString,int)));
-   connect(this, SIGNAL(message_signal(QString,QString)), this, SLOT(message_slot(QString,QString)));
+
 }
 
 /**
@@ -60,7 +56,11 @@ SCDMsgCenter::SCDMsgCenter(QObject *parent) : QObject(parent)
  */
 void SCDMsgCenter::addClient(int socketDescriptor)
 {
-   emit registerClient_signal(socketDescriptor); // serialize client registration
+   QMutexLocker locker(&mutex);
+
+   registerClient(socketDescriptor);
+
+   locker.unlock();
 }
 
 /**
@@ -70,7 +70,11 @@ void SCDMsgCenter::addClient(int socketDescriptor)
  */
 void SCDMsgCenter::removeClient(int socketDescriptor)
 {
-   emit removeClient_signal(socketDescriptor); // serialize client removing
+   QMutexLocker locker(&mutex);
+
+   unregisterClient(socketDescriptor);
+
+   locker.unlock();
 }
 
 /**
@@ -80,7 +84,11 @@ void SCDMsgCenter::removeClient(int socketDescriptor)
  */
 void SCDMsgCenter::addSender(QString sender)
 {
-   emit registerSender_signal(sender); // serialize senders registration
+   QMutexLocker locker(&mutex);
+
+   registerMessageSender(sender);
+
+   locker.unlock();
 }
 
 /**
@@ -90,7 +98,11 @@ void SCDMsgCenter::addSender(QString sender)
  */
 void SCDMsgCenter::removeSender(QString sender)
 {
-   emit removeSender_signal(sender); // serialize senders removing
+   QMutexLocker locker(&mutex);
+
+   unregisterMessageSender(sender);
+
+   locker.unlock();
 }
 
 /**
@@ -115,7 +127,11 @@ void SCDMsgCenter::removeSender(QString sender)
  */
 void SCDMsgCenter::sendCommand(QString cmd, int clientSocketDescriptor)
 {
-   emit command_signal(cmd, clientSocketDescriptor); // serialize command execution request
+   QMutexLocker locker(&mutex);
+
+   processCommand(cmd,clientSocketDescriptor);
+
+   locker.unlock();
 }
 
 /**
@@ -125,6 +141,8 @@ void SCDMsgCenter::sendCommand(QString cmd, int clientSocketDescriptor)
  */
 void SCDMsgCenter::postMessage(QString msg, QString sender, bool prependNewLine)
 {
+   QMutexLocker locker(&mutex);
+
    msg = sender + ": " + msg;
 
    if (prependNewLine)
@@ -132,7 +150,9 @@ void SCDMsgCenter::postMessage(QString msg, QString sender, bool prependNewLine)
       msg.prepend(LF);
    }
 
-   emit message_signal(msg,sender); // serialize senders messages
+   processMessage(msg,sender);
+
+   locker.unlock();
 }
 
 /**
@@ -220,7 +240,7 @@ void SCDMsgCenter::sendMessageToClient(QString msg, int clientSocketDescriptor)
  * @param message message
  * @param sender  from sender
  */
-void SCDMsgCenter::message_slot(QString msg, QString sender)
+void SCDMsgCenter::processMessage(QString msg, QString sender)
 {
    Client client;
 
@@ -239,7 +259,7 @@ void SCDMsgCenter::message_slot(QString msg, QString sender)
  * @brief SCDMsgCenter::removeClient_slot
  * @param socket
  */
-void SCDMsgCenter::removeClient_slot(int socketDescriptor)
+void SCDMsgCenter::unregisterClient(int socketDescriptor)
 {
    Client client = getClient(socketDescriptor);
 
@@ -253,7 +273,7 @@ void SCDMsgCenter::removeClient_slot(int socketDescriptor)
  * @brief SCDMsgCenter::removeSender_slot
  * @param sender
  */
-void SCDMsgCenter::removeSender_slot(QString sender)
+void SCDMsgCenter::unregisterMessageSender(QString sender)
 {
    senders.removeOne(sender);
 }
@@ -262,7 +282,7 @@ void SCDMsgCenter::removeSender_slot(QString sender)
  * @brief SCDMsgCenter::addClient_slot
  * @param socket
  */
-void SCDMsgCenter::registerClient_slot(int socketDescriptor)
+void SCDMsgCenter::registerClient(int socketDescriptor)
 {
    Client client = getClient(socketDescriptor);
 
@@ -287,7 +307,7 @@ void SCDMsgCenter::registerClient_slot(int socketDescriptor)
  * @brief SCDMsgCenter::addSender_slot insert the sendet into registered sender list. if already inserted do nothing.
  * @param sender
  */
-void SCDMsgCenter::registerSender_slot(QString sender)
+void SCDMsgCenter::registerMessageSender(QString sender)
 {
    if (!senders.contains(sender))
    {
@@ -296,11 +316,11 @@ void SCDMsgCenter::registerSender_slot(QString sender)
 }
 
 /**
- * @brief SCDMsgCenter::command_slot process client command
+ * @brief SCDMsgCenter::processCommand Process client command
  * @param cmd command emit by client
  * @param socketDescriptor client id
  */
-void SCDMsgCenter::command_slot(QString cmd, int clientSocketDescriptor)
+void SCDMsgCenter::processCommand(QString cmd, int clientSocketDescriptor)
 {
    QStringList list;
 
@@ -320,7 +340,7 @@ void SCDMsgCenter::command_slot(QString cmd, int clientSocketDescriptor)
       sendMessageToClient("\n" + getHelpString() + getPrompt(clientSocketDescriptor),clientSocketDescriptor);
    }
    else
-   if (cmd.trimmed()=="spy")
+   if (cmd.trimmed()=="spy") // spy the message sender 'sender'
    {
       if (list.size()>1)
       {
@@ -340,12 +360,12 @@ void SCDMsgCenter::command_slot(QString cmd, int clientSocketDescriptor)
       }
    }
    else
-   if (cmd.trimmed()=="exit")
+   if (cmd.trimmed()=="exit") // close a message server client socket
    {
       sendMessageToClient(cmd,clientSocketDescriptor);
    }
    else
-   if (cmd.trimmed()=="list")
+   if (cmd.trimmed()=="list")  // get the command menu prompt
    {
       QString msg = "\n";
 
@@ -361,7 +381,7 @@ void SCDMsgCenter::command_slot(QString cmd, int clientSocketDescriptor)
       sendMessageToClient(msg,clientSocketDescriptor);
    }
    else
-   if (cmd.trimmed()=="ping")
+   if (cmd.trimmed()=="ping") // test the client socket connection
    {
       sendMessageToClient("pong",clientSocketDescriptor);
    }
@@ -371,15 +391,27 @@ void SCDMsgCenter::command_slot(QString cmd, int clientSocketDescriptor)
       sendMessageToClient("\n" + getHelpString() + getPrompt(clientSocketDescriptor),clientSocketDescriptor);
    }
    else
-   if(cmd.trimmed().at(0)=='@')
+   if(cmd.trimmed().at(0)=='@') // send a command to sender 'sender' and enter in 'spy' mode
    {
-      QString sender = cmd.remove(0,1);
+      QString sender = cmd.trimmed().remove(0,1);
 
       list.removeFirst();
 
-      cmd = list.join(" ");
+      cmd = list.join(" ").trimmed();
 
-      emit commandToSender_signal(cmd,sender);
+      if (senders.contains(sender))
+      {
+         client.Sender = sender;
+         client.mode   = 1;
+
+         clients.replace(client.index,client);
+
+         emit commandToSender_signal(cmd,sender);
+      }
+      else
+      {
+         sendMessageToClient("\nSender not found: " + sender + getPrompt(clientSocketDescriptor), clientSocketDescriptor);
+      }
    }
    else
    {

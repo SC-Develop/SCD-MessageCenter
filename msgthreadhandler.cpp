@@ -1,7 +1,7 @@
 /**
- * @class  SCDMsgThreadHandler - https://github.com/sc-develop/SCD-MC
+ * @class  SCDMsgThreadHandler - https://github.com/SC-Develop/SCD_MC
  *
- * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/sc-develop/
+ * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/SC-Develop/
  *
  * @brief  Message Center Server: Thread Signal Processing
  *
@@ -30,11 +30,8 @@
  * @param Id
  * @param parent
  */
-SCDMsgThreadHandler::SCDMsgThreadHandler(int socketDescriptor, SCDMsgServerThread *msgServerThread) :
-    SocketDescriptor(socketDescriptor),
-    thread(msgServerThread)
+SCDMsgThreadHandler::SCDMsgThreadHandler(int socketDescriptor, SCDMsgCenter *mc) : SocketDescriptor(socketDescriptor), mc(mc)
 {
-   mc = msgServerThread->msgServer()->messageCenter();
 }
 
 /**
@@ -88,7 +85,7 @@ void SCDMsgThreadHandler::readyRead()
  */
 void SCDMsgThreadHandler::disconnected()
 {
-   thread->quit();
+   thread()->quit(); 
 }
 
 /**

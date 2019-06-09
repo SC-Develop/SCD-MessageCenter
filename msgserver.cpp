@@ -1,7 +1,7 @@
 /**
- * @class  SCDMsgServer - https://github.com/sc-develop/SCD-MC
+ * @class  SCDMsgServer - https://github.com/SC-Develop/SCD_MC
  *
- * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/sc-develop/
+ * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/SC-Develop/
  *
  * @brief SCD Message Center Server: Interprocess messaging comunications server
  *
@@ -61,7 +61,7 @@ bool SCDMsgServer::start()
    }
    else
    {
-      QTextStream(stdout) << "Unable to start Message Center Server on port: " << Port  << " => " << this->errorString();
+      QTextStream(stdout) << "Could not start the Message Center Server on port: " << Port  << " => " << this->errorString();
    }
 
    return Status;
@@ -84,7 +84,7 @@ void SCDMsgServer::stop()
  */
 void SCDMsgServer::incomingConnection(qintptr SocketDescriptor)
 {
-   SCDMsgServerThread *SockThread = new SCDMsgServerThread(SocketDescriptor,this);  // Create a thread for handling client connections passing a socket descrirptor
+   SCDMsgServerThread *SockThread = new SCDMsgServerThread(SocketDescriptor, mc, this);  // Create a thread for handling client connections passing a socket descrirptor
 
    connect(SockThread,SIGNAL(finished()),SockThread,SLOT(deleteLater()));     // delete thread when finisced()
 

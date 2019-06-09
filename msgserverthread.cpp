@@ -1,7 +1,7 @@
 /**
- * @class  SCDMsgServerThread - https://github.com/sc-develop/SCD-MC
+ * @class  SCDMsgServerThread - https://github.com/SC-Develop/SCD_MC
  *
- * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/sc-develop/
+ * @author Ing. Salvatore Cerami - dev.salvatore.cerami@gmail.com - https://github.com/SC-Develop/
  *
  * @brief  Message Center Server Thread Managent
  *
@@ -31,10 +31,8 @@
  * @param Id
  * @param parent
  */
-SCDMsgServerThread::SCDMsgServerThread(int socketDescriptor, SCDMsgServer *msgServer) :
-    QThread(msgServer),
-    SocketDescriptor(socketDescriptor),
-    srv(msgServer)
+SCDMsgServerThread::SCDMsgServerThread(int socketDescriptor, SCDMsgCenter *mc, QObject *parent) :
+    QThread(parent), SocketDescriptor(socketDescriptor), mc(mc)
 {
 
 }
@@ -52,20 +50,20 @@ SCDMsgServerThread::~SCDMsgServerThread()
  */
 void SCDMsgServerThread::run()
 {
-   SCDMsgThreadHandler *tev = new SCDMsgThreadHandler(SocketDescriptor,this); // Thread handler class live into thread
+   SCDMsgThreadHandler *tev = new SCDMsgThreadHandler(SocketDescriptor, mc); // Thread handler class live into thread
 
    if (tev->start()) // start socket connection and set the socket signal handler slot
    {
-      if (srv->messageCenter())
+      if (mc)
       {
-         srv->messageCenter()->addClient(SocketDescriptor); // register client to message center. client can receive message from application message senders
+         mc->addClient(SocketDescriptor); // register client to message center. client can receive message from application message senders
       }
 
       exec(); //  start thared event loop e do not return until quit or exit is not called (on socket disconnect, exits from event loop)
 
-      if (srv->messageCenter()) // remove client from message center client list
+      if (mc) // remove client from message center client list
       {
-         srv->messageCenter()->removeClient(SocketDescriptor);
+         mc->removeClient(SocketDescriptor);
       }
    }
 
