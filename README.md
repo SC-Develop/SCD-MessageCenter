@@ -41,7 +41,7 @@ The Message Center clients can send command to:
 
 The Remote clients connects to Message Center via TCP socket. You can connect to message center using a TCP socket client terminal as netcat (nc) or telnet, or your own TCP socket client application.
 
-## How To it Work
+## How it Works
 
 To use Message Center you must embed message center source code it into your own multitheread application QT project, and start Message Center TCP Server on a specific port. When the message center server is started, it can accept tcp socket connection from a remote client application as nectat (nc).<br>
 To allow the message center to monitoring your application, you must follow two step:
