@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
    QCoreApplication a(argc, argv);
 
-   QSettings cfg("message-center-deno.cfg");
+   QSettings cfg("message-center-demo.cfg");
 
    int port = cfg.value("port",12345).toInt();   // load application server port value and set default  if not exists
 
